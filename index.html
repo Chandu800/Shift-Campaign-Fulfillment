@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shift | Fulfillment</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkbox = document.getElementById('consent');
+      const submitBtn = document.getElementById('submit-btn');
+
+      checkbox.addEventListener('change', () => {
+        submitBtn.disabled = !checkbox.checked;
+      });
+    });
+  </script>
+
+</head>
+<body>
+  <section class="f-hero">
+    <div class="grid-background"></div>
+    <div class="f-hero-content">
+      <span class="badge">Warehousing & Fulfillment</span>
+      <h1>Simplify warehousing, <br> scale your business with Shift Fulfillment.</h1>
+    </div>
+    <div class="f-hero-form">
+      <h3>Get a Personalized Fulfillment Plan</h3>
+      <p>No setup cost. No billing minimums. Just fulfillment that works.</p>
+
+      <form id="quote-form">
+        <div class="form-group">
+          <input type="text" name="company" id="company" placeholder="" required>
+          <label for="company">Company Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="contact" id="contact" placeholder=" " required>
+          <label for="contact">Contact Person</label>
+        </div>
+
+        <div class="form-group">
+          <input type="tel" name="phone" id="phone" placeholder=" " required>
+          <label for="phone">Phone Number</label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" id="email" placeholder=" " required>
+          <label for="email">Email</label>
+        </div>
+
+        <div class="form-group">
+          <select name="category" id="category" required>
+            <option value="" disabled selected hidden></option>
+            <option value="fashion">Fashion & Apparel</option>
+            <option value="electronics">Electronics</option>
+            <option value="beauty">Beauty & Personal Care</option>
+            <option value="home">Home & Kitchen</option>
+            <option value="sports">Sports & Outdoor</option>
+            <option value="others">Others</option>
+          </select>
+          <label for="category">Product Category</label>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" id="consent" class="form-check-input" required>
+          <label for="consent" class="form-check-label">
+            By submitting this form, I willingly provide my explicit consent to Shift Logistics 
+            to contact me using the provided contact details for communication regarding this form 
+            and related services.
+          </label>
+        </div>
+
+
+        <button type="submit" id="submit-btn" disabled>Request a Quote</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="f-performance">
+    <h2><span class="gradient">Performance</span> You Can Measure</h2>
+
+    <div class="f-stats">
+      <div class="f-stat-wrap">
+        <div class="f-status-bar"></div>
+        <div class="f-stat">
+          <div class="f-stat-number">30%</div>
+          <p>Lower Operational Cost</p>
+        </div>
+      </div>
+
+      <div class="f-stat-wrap">
+        <div class="f-status-bar"></div>
+        <div class="f-stat">
+          <div class="f-stat-number">2X</div>
+          <p>Faster Dispatches</p>
+        </div>
+      </div>
+
+      <div class="f-stat-wrap">
+        <div class="f-status-bar"></div>
+        <div class="f-stat">
+          <div class="f-stat-number">99.5%</div>
+          <p>Order Processing Accuracy</p>
+        </div>
+      </div>
+
+      <div class="f-stat-wrap">
+        <div class="f-status-bar"></div>
+        <div class="f-stat">
+          <div class="f-stat-number">3X</div>
+          <p>More Fulfillment Efficiency</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="f-why-shift">
+    <div class="f-why-shift-header">
+      <h2>Why Shift Fulfillment?</h2>
+    </div>
+
+    <!-- Benefits -->
+    <h3>Core Fulfillment <span class="gradient">Benefits</span></h3>
+    <div class="f-benefits-card-grid">
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/india_11711467.svg" alt="">
+          <h4>Reach Customers Nationwide</h4>
+          <p>Expand your brand’s reach with our pan-India fulfillment network, lowering shipping costs while unlocking premium badges</p>
+        </div>
+      </div>
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/online-marketplace_17427584.svg" alt="">
+          <h4>Sell Everywhere, Seamlessly</h4>
+          <p>D2C website, online marketplaces, B2B, or quick commerce - fulfill every order from one powerful, integrated platform.</p>
+        </div>
+      </div>
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/inventory_12964148.svg" alt="">
+          <h4>Inventory, Managed to Perfection</h4>
+          <p>We take care of it all - receiving products, tracking stock, and restocking returns - so your operations never miss a beat.</p>
+        </div>
+      </div>
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/delivery-box_8428872.svg" alt="">
+          <h4>Fast, Accurate Order Fulfillment</h4>
+          <p>Every order is picked, packed, and shipped with precision, meeting SLA timelines for happier customers and fewer complaints.</p>
+        </div>
+      </div>
+
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/return-box_7960981.svg" alt="">
+          <h4>Returns That Build Trust</h4>
+          <p>Our 360° returns process ensures quality checks, refurbishing sellable products, and safe disposal of non-sellable items - protecting your brand reputation.</p>
+        </div>
+      </div>
+
+      <div class="f-benefit-card">
+        <div class="f-card-content">
+          <img src="./images/dashboard_12177174.svg" alt="">
+          <h4>Total Control at Your Fingertips</h4>
+          <p>Monitor inventory, orders, returns, and delivery performance in real time from one simple dashboard.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <h3>Value - Added <span class="gradient">Services</span> That Drive Delight</h3>
+    <div class="f-service-card-grid">
+      <div class="f-service-card">
+        <div class="f-card-content">
+          <h4>Same-Day & Next-Day Delivery</h4>
+          <img src="./images/66868.jpg" alt="">
+          <p>Delight customers with same-day or next-day delivery through our express shipping service.</p>
+        </div>
+      </div>
+      <div class="f-service-card">
+        <div class="f-card-content">
+          <h4>Branded & Custom Packaging</h4>
+          <img src="./images/custom-packing.jpg" alt="">
+          <p>Stand out with branded packaging, custom boxes, kitting, and marketing inserts that wow your customers.</p>
+        </div>
+      </div>
+      <div class="f-service-card">
+        <div class="f-card-content">
+          <h4>Right-Size & Accurate Packaging</h4>
+          <img src="./images/304.jpg" alt="">
+          <p>We pack every product in the right-size packaging, capturing accurate weight and dimensions to prevent overcharges and keep shipping costs low.</p>
+        </div>
+      </div>
+      <div class="f-service-card">
+        <div class="f-card-content">
+          <h4>Flexible Warehouse Space</h4>
+          <img src="./images/25949.jpg" alt="">
+          <p>Flexible warehousing that grows or shrinks with your seasonal and business needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="f-feature-section">
+    <h2>Built for <span class="gradient">Visibility & Control</span> </h2>
+    <div class="f-feature-content f-feature-tabs">
+      <input type="radio" name="f-feature-tab" id="tab1" checked hidden>
+      <input type="radio" name="f-feature-tab" id="tab2" hidden>
+      <input type="radio" name="f-feature-tab" id="tab3" hidden>
+      <input type="radio" name="f-feature-tab" id="tab4" hidden>
+      <div class="f-feature-image">
+        <img src="./images/image1.png" alt="Highlight Your Brand" class="f-feature-img tab-img1" />
+        <img src="./images/image2.png" alt="Complete Shipment Overview" class="f-feature-img tab-img2" />
+        <img src="./images/image3.png" alt="Live Status Updates" class="f-feature-img tab-img3" />
+      </div>
+      <div class="f-feature-cards">
+        <label class="f-feature-card" for="tab1">
+          <h3>100% Visibility for You & Your Team</h3>
+          <p> Real-time tracking across inventory, order status, returns & dispatch.</p>
+        </label>
+        <label class="f-feature-card" for="tab2">
+          <h3>Live Dashboard Access</h3>
+          <p>Monitor fulfillment health, returns, and stock anytime.</p>
+        </label>
+        <label class="f-feature-card" for="tab3">
+          <h3>Seamless Collaboration</h3>
+          <p>Multiple team members can access and manage operations securely.</p>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="f-categories">
+    <div class="categories-left">
+      <h2>Built for Sellers Across Every Category</h2>
+    </div>
+
+    <div class="categories-right">
+      <div class="vertical-marquee">
+        <div class="marquee-inner">
+          <!-- Column 1 -->
+          <div class="marquee-column col-1">
+            
+            <div class="f-category"><img src="./images/baby-products.png" alt=""><p>Toys & Baby Products</p></div>
+            <div class="f-category"><img src="./images/stationery.png" alt=""><p>Books & Stationery</p></div>
+            <div class="f-category"><img src="./images/yoga.png" alt=""><p>Health & Wellness</p></div>
+            <div class="f-category"><img src="./images/restaurant.png" alt=""><p>FMCG & Packaged Foods</p></div>
+            
+            <!-- duplicate for loop -->
+            <div class="f-category"><img src="./images/gadgets.png" alt=""><p>Gadgets & Accessories</p></div>
+            <div class="f-category"><img src="./images/fashion.png" alt=""><p>Fashion & Apparel</p></div>
+            <div class="f-category"><img src="./images/drink.png" alt=""><p>Beauty & Skincare</p></div>
+            <div class="f-category"><img src="./images/kitchen.png" alt=""><p>Home & Kitchen</p></div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="marquee-column col-2">
+            <div class="f-category"><img src="./images/gadgets.png" alt=""><p>Gadgets & Accessories</p></div>
+            <div class="f-category"><img src="./images/fashion.png" alt=""><p>Fashion & Apparel</p></div>
+            <div class="f-category"><img src="./images/drink.png" alt=""><p>Beauty & Skincare</p></div>
+            <div class="f-category"><img src="./images/kitchen.png" alt=""><p>Home & Kitchen</p></div>
+            
+            <!-- duplicate for loop -->
+            <div class="f-category"><img src="./images/yoga.png" alt=""><p>Health & Wellness</p></div>
+            <div class="f-category"><img src="./images/restaurant.png" alt=""><p>FMCG & Packaged Foods</p></div>
+            <div class="f-category"><img src="./images/baby-products.png" alt=""><p>Toys & Baby Products</p></div>
+            <div class="f-category"><img src="./images/stationery.png" alt=""><p>Books & Stationery</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="f-steps-section">
+    <h2>How It Works: <span class="gradient"> Simple, Fast, Efficient</span></h2>
+    <!-- <img src="./images/steps-image.svg" alt=""> -->
+    <div class="f-steps-container">
+      <div class="f-step-cards">
+        <p class="f-step-number">01</p>
+        <p>Connect your sales channels and send us your stock.</p>
+      </div>
+  
+      <div class="f-step-cards">
+        <p class="f-step-number">02</p>
+        <p>We store, manage, and organize your inventory.</p>
+      </div>
+  
+      <div class="f-step-cards">
+        <p class="f-step-number">03</p>
+        <p>As orders come in, we pick, pack, and ship them to your customers</p>
+      </div>
+  
+      <div class="f-step-cards">
+        <p class="f-step-number">04</p>
+        <p>Simplify returns processing with quality checks and quick restocking.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="f-testimonials">
+    <h2>Real Benefits. Real Brands.</h2>
+
+    <div class="testimonial-list">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">
+          "We were struggling with fulfillment chaos during festive sales. Shift helped us bring order, speed, and confidence to our operations."
+        </p>
+        <p class="testimonial-author">— Co-founder, D2C Apparel Brand</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">
+          "I wanted to focus on my brand - not packing boxes. Shift’s team made that possible."
+        </p>
+        <p class="testimonial-author">— Seller, Organic Skincare Line</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="f-faqs">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What areas do you deliver to?</summary>
+      <p>We deliver across multiple cities in India and are constantly expanding our network.</p>
+    </details>
+
+    <details>
+      <summary>How fast can I get my orders delivered?</summary>
+      <p>We offer same-day and next-day delivery for eligible orders depending on location and product type.</p>
+    </details>
+
+    <details>
+      <summary>Can I track my inventory in real time?</summary>
+      <p>Yes, our dashboard provides real-time tracking of your inventory, orders, and returns.</p>
+    </details>
+
+    <details>
+      <summary>What areas do you deliver to?</summary>
+      <p>We deliver across multiple cities in India and are constantly expanding our network.</p>
+    </details>
+
+    <details>
+      <summary>How fast can I get my orders delivered?</summary>
+      <p>We offer same-day and next-day delivery for eligible orders depending on location and product type.</p>
+    </details>
+
+    <details>
+      <summary>Can I track my inventory in real time?</summary>
+      <p>Yes, our dashboard provides real-time tracking of your inventory, orders, and returns.</p>
+    </details>
+  </section>
+
+
+  <section class="f-cta-section">
+    <h2>Ready to Leave Fulfillment Stress Behind?</h2>
+    <p>Let Shift take care of the backend, while you scale your business without limits.</p>
+    <button>Request a quote Now</button>
+  </section>
+
+  
+</body>
+</html>
