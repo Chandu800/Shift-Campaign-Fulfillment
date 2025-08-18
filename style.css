@@ -422,7 +422,7 @@ form {
 
 .f-why-shift h3 {
   font-size: 1.8rem;
-  margin: 2rem 0 2rem 0;
+  margin: 4rem 0 2rem 0;
 }
 
 .gradient {
@@ -437,24 +437,52 @@ form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+
 }
 
+.f-benefit-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease-in-out;
+}
+
+.f-benefit-card:hover, .f-service-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
 .f-benefit-card h4 {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  font-size: 1.1rem;
 }
 
 .f-why-shift p {
   color: #555;
+  font-size: 1rem;
 }
+
 
 .f-card-content img {
   height: 50px;
 }
 
+.f-service-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
 .f-service-card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
 }
 
 .f-service-card-grid img {
@@ -466,8 +494,8 @@ form {
 }
 
 .f-service-card h4 {
-  font-size: 1.3rem;
-  margin-top: 0
+  font-size: 1rem;
+  margin: 1rem 0;
 }
 
 /* Grid for 4 cards per row */
@@ -649,37 +677,45 @@ form {
   padding: 4rem 5rem;
   padding-bottom: 0;
   color: black;
-    /* border-left: 1px solid #555; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .f-step-number {
-  font-size: 2rem;
-  color: #ddd;
+  font-size: 0.8rem;
+  color: #7c3aed;
   margin: 0;
   font-weight: bold;
 }
 
 .f-steps-section h2 {
-  font-size: 2rem;
-  text-align: center;
+  font-size: 4rem;
+  text-align: left;
 }
 
 .f-steps-container {
   display: flex;
-  gap: 30px;
-  /* justify-content: space-between; */
+  flex-direction: column;
 }
 
 .f-step-cards {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  justify-content: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
   min-width: 220px;
 }
+
+.f-step-cards p {
+  margin: 0;
+}
+
 
 .f-testimonials {
   max-width: 1200px;
@@ -692,7 +728,7 @@ form {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
 }
 
 /* Testimonial container — 2 columns */
@@ -895,9 +931,12 @@ details[open] p {
   
   .f-steps-section {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
   }
   .f-steps-section h2 {
     font-size: 1.8rem;
+    text-align: center;
   }
   .f-testimonials {
     margin: 0 2rem;
