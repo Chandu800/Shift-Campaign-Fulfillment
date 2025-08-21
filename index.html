@@ -33,14 +33,22 @@
             first_name: document.getElementById("contact").value,
             email: document.getElementById("email").value,
             mobile_number: document.getElementById("phone").value,
-            first_source: "Shift Fulfillment Landing Page",
+            lead_source_id: "402003338377",
+            subscription_status: [
+              { subscription_type_id: 1, status: "subscribed" },
+              { subscription_type_id: 2, status: "subscribed" },
+              { subscription_type_id: 3, status: "subscribed" },
+              { subscription_type_id: 4, status: "subscribed" },
+              { subscription_type_id: 5, status: "subscribed" },
+            ],
+            whatsapp_subscription_status: "1",
+            sms_subscription_status: "1",
             custom_field: {
               cf_company_name: document.getElementById("company").value,
               cf_product_category: document.getElementById("category").value,
               cf_consent_given: document.getElementById("consent").checked,
             }
           }
-
         };
 
         try {
@@ -148,9 +156,7 @@
         <div class="form-check">
           <input type="checkbox" id="consent" class="form-check-input" required>
           <label for="consent" class="form-check-label">
-            By submitting this form, I willingly provide my explicit consent to Shift Logistics 
-            to contact me using the provided contact details for communication regarding this form 
-            and related services.
+            I consent to Shift Logistics contacting me regarding this request, related services, marketing communication, and product updates. I understand I can unsubscribe from marketing communication at any time.
           </label>
         </div>
 
