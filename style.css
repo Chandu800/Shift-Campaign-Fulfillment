@@ -15,7 +15,7 @@ body {
   color: #fff;
   z-index: 1;
   overflow: hidden;
-  height: 100vh;
+  height: 80vh;
 }
 
 .f-hero::before {
