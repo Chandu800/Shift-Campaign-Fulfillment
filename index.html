@@ -7,58 +7,141 @@
   <link rel="stylesheet" href="style.css">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const checkbox = document.getElementById('consent');
-      const submitBtn = document.getElementById('submit-btn');
+      document.getElementById("phone").addEventListener("input", function (e) {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+      });
 
-      checkbox.addEventListener('change', () => {
-        submitBtn.disabled = !checkbox.checked;
+      const submitBtn = document.getElementById('submit-btn');
+      const form = document.getElementById("quote-form");
+      const consent = document.getElementById("consent");
+
+      consent.addEventListener("change", () => {
+        submitBtn.disabled = !consent.checked;
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const emailError = document.getElementById("email-error");
+        emailError.textContent = ""; // clear previous errors
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+
+        const payload = {
+          contact: {
+            first_name: document.getElementById("contact").value,
+            email: document.getElementById("email").value,
+            mobile_number: document.getElementById("phone").value,
+            first_source: "Shift Fulfillment Landing Page",
+            custom_field: {
+              cf_company_name: document.getElementById("company").value,
+              cf_product_category: document.getElementById("category").value,
+              cf_consent_given: document.getElementById("consent").checked,
+            }
+          }
+
+        };
+
+        try {
+          const res = await fetch("http://localhost:3000/create-contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+
+          if (res.ok) {
+            submitBtn.innerText = "Submitted, Thank You!";
+            form.reset();
+          } else {
+            const err = await res.json();
+            console.error("Backend/Freshsales error:", err);
+
+            if (err && err.errors && Array.isArray(err.errors.message)) {
+              emailError.textContent = `${err.errors.message[0]}Please use a different one.`;
+            } else {
+              emailError.textContent = "Something went wrong. Please try again.";
+            }
+
+            submitBtn.innerText = "Error";
+          }
+
+        } catch (error) {
+          console.error("Network error:", error);
+          submitBtn.innerText = "Failed. Retry?";
+        }
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Request a Quote";
+        }, 3000);
       });
     });
+    function scrollToForm() { 
+      const form = document.getElementById("f-hero-form"); 
+      form.scrollIntoView({ behavior: "smooth", block: "center" }); 
+      form.classList.add("highlight"); 
+      setTimeout(() => form.classList.remove("highlight"), 1500); 
+    }
   </script>
+
 
 </head>
 <body>
   <section class="f-hero">
-    <div class="grid-background"></div>
     <div class="f-hero-content">
       <span class="badge">Warehousing & Fulfillment</span>
-      <h1>Simplify warehousing, <br> scale your business with Shift Fulfillment.</h1>
+      <h1>Simplify warehousing and <br> scale your business with Shift Fulfillment.</h1>
     </div>
-    <div class="f-hero-form">
+    <div id="f-hero-form">
       <h3>Get a Personalized Fulfillment Plan</h3>
       <p>No setup cost. No billing minimums. Just fulfillment that works.</p>
 
       <form id="quote-form">
         <div class="form-group">
           <input type="text" name="company" id="company" placeholder="" required>
-          <label for="company">Company Name</label>
+          <label for="company">Company name<span> *</span></label>
         </div>
 
         <div class="form-group">
           <input type="text" name="contact" id="contact" placeholder=" " required>
-          <label for="contact">Contact Person</label>
+          <label for="contact">Enter your Name<span> *</span></label>
         </div>
 
         <div class="form-group">
-          <input type="tel" name="phone" id="phone" placeholder=" " required>
-          <label for="phone">Phone Number</label>
+          <input type="tel" 
+                name="phone" 
+                id="phone" 
+                placeholder=" " 
+                required 
+                pattern="[0-9]{10}" 
+                maxlength="10"
+                title="Enter a 10-digit phone number">
+          <label for="phone">Phone Number<span> *</span></label>
         </div>
+
 
         <div class="form-group">
           <input type="email" name="email" id="email" placeholder=" " required>
-          <label for="email">Email</label>
+          <label for="email">Enter your Email<span> *</span></label>
+          <span id="email-error" class="error-message"></span>
         </div>
 
         <div class="form-group">
           <select name="category" id="category" required>
             <option value="" disabled selected hidden></option>
-            <option value="fashion">Fashion & Apparel</option>
-            <option value="electronics">Electronics</option>
-            <option value="beauty">Beauty & Personal Care</option>
-            <option value="home">Home & Kitchen</option>
-            <option value="sports">Sports & Outdoor</option>
-            <option value="others">Others</option>
+            <option value="Fashion and apparel">Fashion and apparel</option>
+            <option value="Health and Personal care">Health and Personal care</option>
+            <option value="Consumer Electronics">Consumer Electronics</option>
+            <option value="Baby Products">Baby Products</option>
+            <option value="Grocery and Gourmet foods">Grocery and Gourmet foods</option>
+            <option value="Home and Kitchen">Home and Kitchen</option>
+            <option value="Sports">Sports</option>
+            <option value="Stationary">Stationary</option>
+            <option value="Toys and games">Toys and games</option>
+            <option value="Others">Others</option>
           </select>
+
           <label for="category">Product Category</label>
         </div>
 
@@ -125,14 +208,14 @@
     <div class="f-benefits-card-grid">
       <div class="f-benefit-card">
         <div class="f-card-content">
-          <img src="./images/india_11711467.svg" alt="">
+          <img src="./images/india.svg" alt="">
           <h4>Reach Customers Nationwide</h4>
           <p>Tap into our pan-India fulfillment network to deliver faster, reduce shipping costs, and earn premium marketplace badges that boost visibility and sales.</p>
         </div>
       </div>
       <div class="f-benefit-card">
         <div class="f-card-content">
-          <img src="./images/Group 1 (1).svg" alt="">
+          <img src="./images/Fulfillment.svg" alt="">
           <h4>Sell Everywhere, Seamlessly</h4>
           <p>From D2C websites to online marketplaces, B2B orders, or quick commerce, manage and fulfill every order from one powerful, integrated platform.</p>
         </div>
@@ -146,7 +229,7 @@
       </div>
       <div class="f-benefit-card">
         <div class="f-card-content">
-          <img src="./images/delivery-box_8428872.svg" alt="">
+          <img src="./images/order fulfillment.svg" alt="">
           <h4>Fast, Accurate Order Fulfillment</h4>
           <p>Every order is picked, packed, and shipped with precision to meet strict SLA timelines, ensuring happier customers and fewer complaints.</p>
         </div>
@@ -154,7 +237,7 @@
 
       <div class="f-benefit-card">
         <div class="f-card-content">
-          <img src="./images/return-box_7960981.svg" alt="">
+          <img src="./images/return box.svg" alt="">
           <h4>Hassle-Free Return Management</h4>
           <p>Our 360° returns process includes quality checks, preparing sellable products for resale, and safe disposal of non-sellable items to protect your brand reputation.</p>
         </div>
@@ -162,7 +245,7 @@
 
       <div class="f-benefit-card">
         <div class="f-card-content">
-          <img src="./images/dashboard_12177174.svg" alt="">
+          <img src="./images/dashboard.svg" alt="">
           <h4>Total Control at Your Fingertips</h4>
           <p>Track inventory, orders, returns, and delivery performance in real time from one easy-to-use dashboard.</p>
         </div>
@@ -243,30 +326,30 @@
           <!-- Column 1 -->
           <div class="marquee-column col-1">
             
-            <div class="f-category"><img src="./images/baby-products.png" alt=""><p>Toys & Baby Products</p></div>
-            <div class="f-category"><img src="./images/stationery.png" alt=""><p>Books & Stationery</p></div>
+            <div class="f-category"><img src="./images/Baby-products.svg" alt=""><p>Toys & Baby Products</p></div>
+            <div class="f-category"><img src="./images/school.svg" alt=""><p>Books & Stationery</p></div>
             <div class="f-category"><img src="./images/yoga.png" alt=""><p>Health & Wellness</p></div>
-            <div class="f-category"><img src="./images/restaurant.png" alt=""><p>FMCG & Packaged Foods</p></div>
+            <div class="f-category"><img src="./images/packaged-food.svg" alt=""><p>FMCG & Packaged Foods</p></div>
             
             <!-- duplicate for loop -->
-            <div class="f-category"><img src="./images/gadgets.png" alt=""><p>Gadgets & Accessories</p></div>
-            <div class="f-category"><img src="./images/fashion.png" alt=""><p>Fashion & Apparel</p></div>
-            <div class="f-category"><img src="./images/drink.png" alt=""><p>Beauty & Skincare</p></div>
-            <div class="f-category"><img src="./images/kitchen.png" alt=""><p>Home & Kitchen</p></div>
+            <div class="f-category"><img src="./images/arrow.svg" alt=""><p>Gadgets & Accessories</p></div>
+            <div class="f-category"><img src="./images/fashion.svg" alt=""><p>Fashion & Apparel</p></div>
+            <div class="f-category"><img src="./images/Beauty.svg" alt=""><p>Beauty & Skincare</p></div>
+            <div class="f-category"><img src="./images/kitchen.svg" alt=""><p>Home & Kitchen</p></div>
           </div>
 
           <!-- Column 2 -->
           <div class="marquee-column col-2">
-            <div class="f-category"><img src="./images/gadgets.png" alt=""><p>Gadgets & Accessories</p></div>
-            <div class="f-category"><img src="./images/fashion.png" alt=""><p>Fashion & Apparel</p></div>
-            <div class="f-category"><img src="./images/drink.png" alt=""><p>Beauty & Skincare</p></div>
-            <div class="f-category"><img src="./images/kitchen.png" alt=""><p>Home & Kitchen</p></div>
+            <div class="f-category"><img src="./images/arrow.svg" alt=""><p>Gadgets & Accessories</p></div>
+            <div class="f-category"><img src="./images/fashion.svg" alt=""><p>Fashion & Apparel</p></div>
+            <div class="f-category"><img src="./images/Beauty.svg" alt=""><p>Beauty & Skincare</p></div>
+            <div class="f-category"><img src="./images/kitchen.svg" alt=""><p>Home & Kitchen</p></div>
             
             <!-- duplicate for loop -->
             <div class="f-category"><img src="./images/yoga.png" alt=""><p>Health & Wellness</p></div>
-            <div class="f-category"><img src="./images/restaurant.png" alt=""><p>FMCG & Packaged Foods</p></div>
-            <div class="f-category"><img src="./images/baby-products.png" alt=""><p>Toys & Baby Products</p></div>
-            <div class="f-category"><img src="./images/stationery.png" alt=""><p>Books & Stationery</p></div>
+            <div class="f-category"><img src="./images/packaged-food.svg" alt=""><p>FMCG & Packaged Foods</p></div>
+            <div class="f-category"><img src="./images/Baby-products.svg" alt=""><p>Toys & Baby Products</p></div>
+            <div class="f-category"><img src="./images/school.svg" alt=""><p>Books & Stationery</p></div>
           </div>
         </div>
       </div>
@@ -371,7 +454,8 @@
   <section class="f-cta-section">
     <h2>Ready to Leave Fulfillment Stress Behind?</h2>
     <p>Let Shift take care of the backend, while you scale your business without limits.</p>
-    <button>Request a quote Now</button>
+    <button onclick="scrollToForm()">Request a Quote Now</button>
+
   </section>
 
   
